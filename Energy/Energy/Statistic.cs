@@ -8,13 +8,15 @@ namespace Energy
 {
     public static class Statistic
     {
-
         private static List<Device> data = new List<Device>();
+
         public static List<Device> Data
         {
             get { return data; }
             private set => data = value;
         }
+
+        public static void AddElement(Device element) => data.Add(element);
 
         public static bool haveDevice(Device device)
         {

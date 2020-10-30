@@ -38,7 +38,7 @@ namespace Energy
 
             return Statistic.Data
                 .Where(e => e.TypeDivice == TypeDivice)
-                .Max(e => e.Number);
+                .Max(e => e.Number) + 1;
         }
 
         public void SetUsege(double realUsege, DateTime time)
@@ -49,9 +49,14 @@ namespace Energy
 
         public double GetUsege()
         {
-            if (RealUsege > 0)
-                return RealUsege;
-            return TUsege;
+            if (RealUsege < 0)
+                return TUsege;
+            return GetProbabilityUsege();
+        }
+
+        private double GetProbabilityUsege()
+        {
+            throw new NotImplementedException();
         }
 
         public static bool operator !=(Device device1, Device device2)
