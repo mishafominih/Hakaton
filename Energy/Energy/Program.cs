@@ -11,6 +11,8 @@ namespace Energy
         static void Main(string[] args)
         {
             Console.WriteLine("Я работаю!!!");
+            var x = new Device(1, Type.Freese);
+            Console.WriteLine(x.Number);
             Console.ReadLine();
         }
     }
