@@ -56,12 +56,15 @@ namespace Energy
 
         private double GetProbabilityUsege()
         {
-            var lisProbability = new List<double>();
-            foreach (var item in ListUsege)
-                lisProbability.Add(ListUsege
-                    .Where(e => item == e)
-                    .Count() / ListUsege.Count);
-            return lisProbability.Count;
+            var lisProbability = new Dictionary<double, double>();
+            var key = 0.0;
+            foreach (var item in ListUsege) 
+            { 
+                key = ListUsege.Where(e => item == e).Count() / ListUsege.Count;
+                lisProbability[key] = item.Item2;
+            }
+            key = lisProbability.Max(e => e.Key);
+            return lisProbability[key];
         }
 
         public static bool operator !=(Device device1, Device device2)
