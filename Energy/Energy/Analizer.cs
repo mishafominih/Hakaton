@@ -11,7 +11,7 @@ namespace Energy
         public static void Update(Tick tick)
         {
             var firstCalculate = 0.0;
-            foreach(var d in tick.Devices) firstCalculate += d.GetConsumption();
+            foreach(var d in tick.Devices) firstCalculate += d.GetUsege();
             if (IsEquals(firstCalculate, tick.Usage)) return;
             foreach (var d in tick.Devices)
             {
