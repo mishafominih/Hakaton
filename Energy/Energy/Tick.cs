@@ -13,8 +13,7 @@ namespace Energy
 
         public Tick(string devices, double u)
         {
-            var ds = new List<Device>();
-            ds = devices
+            Devices = devices
                 .Split(new char[] { ',', ' ' }, StringSplitOptions.RemoveEmptyEntries)
                 .Select(x => (Type)Enum.Parse(typeof(Type), x))
                 .Select(x => new Device(0, x))

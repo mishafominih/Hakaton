@@ -15,7 +15,7 @@ namespace Energy
             if (IsEquals(firstCalculate, tick.Usage)) return;
             foreach (var d in tick.Devices)
             {
-                if (true)//если есть новые элементы
+                if (Statistic.haveDevice(d))//если есть новые элементы
                 {
                     d.SetUsege(Math.Abs(tick.Usage - firstCalculate), DateTime.Now);
                 }

@@ -10,9 +10,11 @@ namespace Energy
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Я работаю!!!");
-            var x = new Device(1, Type.Freese);
-            Console.WriteLine(x.Number);
+            InputData inputData = new InputData(new List<Tick>
+            {
+                new Tick("Computer, Computer", 100),
+                new Tick("Computer, Lamp, Freese", 140)
+            });
             Console.ReadLine();
         }
     }
