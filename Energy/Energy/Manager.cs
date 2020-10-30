@@ -8,18 +8,23 @@ namespace Energy
 {
     public class Manager
     {
-        public void Update(InputData s)
+        public static void Update(InputData s)
         {
             var val = s.GetValue();
-            //Statistic.Data
+            if (val != null)
+            {
+                var tick = Statistic.UpdateTick(val);
+                Analizer.Update(tick);
+                Statistic.AddElement(tick);
+            }
         }
 
-        public Tick GetTick()
+        public static Tick GetTick()
         {
             return null;
         }
 
-        public List<Tuple<DateTime, double>> GetGraf(Type type)
+        public static List<Tuple<DateTime, double>> GetGraf(Type type)
         {
             return null;
         }
