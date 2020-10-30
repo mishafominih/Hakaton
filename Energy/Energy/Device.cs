@@ -69,6 +69,7 @@ namespace Energy
 
         public static bool operator !=(Device device1, Device device2)
         {
+            if (device1 is null || device2 is null) return false;
             if (device1.Number != device2.Number) return false;
             if (!Analizer.IsEquals(device1.GetUsege(),device2.GetUsege())) return false;
             if (device1.TypeDivice != device2.TypeDivice) return false;
