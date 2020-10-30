@@ -22,19 +22,19 @@ namespace Energy
             private set => TypeDivice = value;
         }
         private double RealUsege = -1;
-        private List<Tuple<double, double>> ListUsege; // <time, RealUsege>
+        private List<Tuple<DateTime, double>> ListUsege; // <time, RealUsege>
         private int number;
 
 
         public Device(double TConsumption, Type type)
         {
-            ListUsege = new List<Tuple<double, double>>();
+            ListUsege = new List<Tuple<DateTime, double>>();
             this.TUsege = TConsumption;
             TypeDivice = type;
             //Statistic.data.Where(e => )
         }
 
-        public void SetUsege(double realUsege, double time)
+        public void SetUsege(double realUsege, DateTime time)
         {
             RealUsege = realUsege;
             ListUsege.Add(Tuple.Create(time, realUsege));
