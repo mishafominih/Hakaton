@@ -16,16 +16,22 @@ namespace Energy
     public class Device
     {
         private readonly double TUsege;
-        private Type typeDivice;
+        public Type TypeDivice
+        {
+            get { return TypeDivice; }
+            private set => TypeDivice = value;
+        }
         private double RealUsege = -1;
         private List<Tuple<double, double>> ListUsege; // <time, RealUsege>
+        private int number;
 
 
         public Device(double TConsumption, Type type)
         {
             ListUsege = new List<Tuple<double, double>>();
             this.TUsege = TConsumption;
-            typeDivice = type;
+            TypeDivice = type;
+            //Statistic.data.Where(e => )
         }
 
         public void SetUsege(double realUsege, double time)
@@ -41,5 +47,24 @@ namespace Energy
             return TUsege;
         }
 
+        public static bool operator !=(Device device1, Device device2)
+        {
+            if (device1.number != device2.number) return false;
+            if (!Analizer.IsEquals(device1.GetConsumption(),device2.GetConsumption())) return false;
+            if (device1.TypeDivice != device2.TypeDivice) return false;
+            return true;
+        }
+
+        public override bool Equals(object device)
+        {
+            if (device is Device)
+                return this == (Device)device;
+            else return false;
+        }
+
+        public static bool operator ==(Device device1, Device device2)
+        {
+            return !(device1 != device2);
+        }
     }
 }
