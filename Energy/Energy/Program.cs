@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Energy
 {
@@ -20,6 +21,10 @@ namespace Energy
 
             for(int i = 0; i < 500; i++)
                 Manager.Update(inputData);
+
+            var menu = new Menu();
+
+            Application.Run(menu);
             Console.ReadLine();
         }
     }
