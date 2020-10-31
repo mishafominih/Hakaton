@@ -10,7 +10,9 @@ namespace Energy
     {
         Computer,
         Lamp,
-        Freese
+        Freese,
+        Condition,
+        DishWasher
     }
   
     public class Device
@@ -49,13 +51,19 @@ namespace Energy
             switch (TypeDevice)
             {
                 case Type.Computer:
-                    diapazon = new Diapazon(2, 10);
+                    diapazon = new Diapazon(0, 0.001);
                     break;
                 case Type.Freese:
-                    diapazon = new Diapazon(20, 40);
+                    diapazon = new Diapazon(0.07, 0.1);
                     break;
                 case Type.Lamp:
-                    diapazon = new Diapazon(0, 2);
+                    diapazon = new Diapazon(0.001, 0.03);
+                    break;
+                case Type.Condition:
+                    diapazon = new Diapazon(0.03, 0.07);
+                    break;
+                case Type.DishWasher:
+                    diapazon = new Diapazon(0.1, 0.2);
                     break;
             }
         }
@@ -73,7 +81,7 @@ namespace Energy
         public bool IsIn(double d)
         {
             d = Math.Abs(d);
-            return a < d && d < b;
+            return a <= d && d < b;
         }
     }
 }
