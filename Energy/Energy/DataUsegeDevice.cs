@@ -57,6 +57,7 @@ namespace Energy.Forms
                 text.Text = element.TypeDevice.ToString();
                 this.Controls.Add(text);
             }
+
         }
 
         private void CreateBrush()
@@ -93,7 +94,13 @@ namespace Energy.Forms
                 if (brush2.ContainsKey(e.TypeDevice))
                     graphics.FillPie(new SolidBrush(brush2[e.TypeDevice]), 0.0f, 0.0f, width, height, startZ, endZ - startZ);
             }
-
+            var lable = new Label();
+            lable.Location = new Point(698, 248);
+            lable.Size = new Size(104, 104);
+            lable.Text = all.ToString() + " кВт⋅ч";
+            lable.TextAlign = ContentAlignment.MiddleCenter;
+            lable.Font = new Font("Arial", 22);
+            this.Controls.Add(lable);
             return mybit;
         }
 
