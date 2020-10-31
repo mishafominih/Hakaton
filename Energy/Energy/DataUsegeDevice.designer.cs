@@ -1,4 +1,6 @@
-﻿namespace Energy.Forms
+﻿using System;
+
+namespace Energy.Forms
 {
     partial class DataUsegeDevice
     {
@@ -28,6 +30,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            var isDay = DateTime.Now.Hour > 7 && DateTime.Now.Hour < 22;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DataUsegeDevice));
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
@@ -98,7 +101,10 @@
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(111, 40);
             this.button2.TabIndex = 5;
-            this.button2.Text = "Day";
+            if (isDay)
+                this.button2.Text = "Day";
+            else
+                this.button2.Text = "Night";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
