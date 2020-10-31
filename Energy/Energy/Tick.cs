@@ -10,7 +10,6 @@ namespace Energy
     {
         public List<Device> devices;
         public double Usege;
-
         public Tick(string str, double d)
         {
             devices = str.Split(new string[] { ", " }, StringSplitOptions.RemoveEmptyEntries)

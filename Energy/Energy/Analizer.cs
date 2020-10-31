@@ -16,6 +16,7 @@ namespace Energy
                 if (prevTick is null)
                 {
                     d.SumUsege = tick.Usege;
+                    prevTick = tick;
                     break;
                 }
                 var t = tick - prevTick;
@@ -23,7 +24,8 @@ namespace Energy
                     break;
                 t.Item2.SumUsege = t.Item1;
             }
-            prevTick = tick;
+            prevTick.Usege = tick.Usege;
+            prevTick.devices = tick.devices.ToList();
         }
     }
 }
