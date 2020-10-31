@@ -13,16 +13,19 @@ namespace Energy
     {
         static void Main(string[] args)
         {
-            InputData inputData = new InputData(new List<Tick>
+            List<Tick> ticks = new List<Tick>
             {
-                new Tick("Computer 2", 100),
-                new Tick("Computer 3", 140),
-                new Tick("Computer 4", 180),
-                new Tick("Computer 5", 200),
+                new Tick("Computer 1", 0.005),
+                new Tick("Computer 1, Lamp 1", 0.0051),
+                new Tick("Computer 1, Lamp 1, Freese 1", 0.2051),
+                new Tick("Computer 1, Lamp 1, Freese 1, Condition 1", 0.3051),
+                new Tick("Computer 1, Lamp 1, Freese 1, Condition 1, DishWasher 1", 0.8051)
+            };
+            Fill(ticks);
+            InputData inputData = new InputData(ticks);
 
-            });
 
-            for (int i = 0; i < 10; i++)
+            for (int i = 0; i < 50; i++)
             {
                 Manager.Update(inputData);
                 Thread.Sleep(100);
@@ -32,6 +35,21 @@ namespace Energy
             Application.Run(form);
 
             Console.ReadLine();
+        }
+
+        private static void Fill(List<Tick> ticks)
+        {
+            ticks.Add(new Tick("Computer 1, Lamp 1, Freese 1, Condition 1, DishWasher 1", 0.8051));
+            ticks.Add(new Tick("Computer 1, Lamp 1, Freese 1, Condition 1, DishWasher 2", 1.4051));
+            ticks.Add(new Tick("Computer 1, Freese 1, Condition 1, DishWasher 2", 1.4050));
+            ticks.Add(new Tick("Computer 1, Freese 3, Condition 1, DishWasher 2", 1.9056));
+            ticks.Add(new Tick("Computer 2, Freese 3, Condition 1, DishWasher 2", 1.9116));
+            ticks.Add(new Tick("Computer 3, Freese 3, Condition 1, DishWasher 2", 1.9196));
+            ticks.Add(new Tick("Computer 3, Lamp 5, Freese 3, Condition 1, DishWasher 2", 1.9206));
+            ticks.Add(new Tick("Computer 3, Lamp 5, Freese 3, Condition 1", 0.9206));
+            ticks.Add(new Tick("Computer 3, Lamp 5, Freese 3", 0.8206));
+            ticks.Add(new Tick("Computer 3, Lamp 5, Freese 3, Condition 1", 0.9106));
+            ticks.Add(new Tick("Computer 2, Lamp 5, Freese 3, Condition 1", 0.9016));
         }
     }
 }
