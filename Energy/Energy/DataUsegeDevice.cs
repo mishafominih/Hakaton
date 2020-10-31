@@ -64,7 +64,11 @@ namespace Energy.Forms
 
                 }
                 else
-                    PrintNameDevice[element.TypeDevice].Text = element.TypeDevice.ToString() + " " + GetTarif(new List<Device> { element }).ToString() + " кВт⋅ч";
+                {
+                    var v = GetTarif(new List<Device> { element }).ToString();
+                    PrintNameDevice[element.TypeDevice].Text = element.TypeDevice.ToString() + " " +
+                        v.Substring(0, Math.Min(v.Length, 5)) + " кВт⋅ч";
+                }
                 yPos += dy;
                 if (yPos + 2 * dy >= this.Size.Height)
                 {
