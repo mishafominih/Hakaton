@@ -12,12 +12,6 @@ namespace Energy
 
 
 
-        public static EkonomikInfo GetAllDeviceInfo(DateTime start)
-        {
-            return new EkonomikInfo(devices, start);
-        }
-
-
         public static List<Device> GetDevices() => devices;
 
         public static void UpdateTick(Tick tick)

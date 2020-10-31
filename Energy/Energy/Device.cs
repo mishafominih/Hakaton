@@ -25,8 +25,6 @@ namespace Energy
         
         List<Tuple<DateTime, double>> graf = new List<Tuple<DateTime, double>>();
 
-
-
         public void UpdateGraf()
         {
             graf.Add(Tuple.Create(DateTime.Now, SumUsege));
