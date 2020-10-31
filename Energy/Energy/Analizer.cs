@@ -22,6 +22,7 @@ namespace Energy
                 if (t is null)
                     break;
                 t.Item2.SumUsege += t.Item1;
+                break;
             }
             prevTick = new Tick(tick);
         }

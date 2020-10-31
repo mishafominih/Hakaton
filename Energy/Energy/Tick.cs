@@ -39,7 +39,7 @@ namespace Energy
             {
                 var item = tick2.devices.Where(e1 => e1.Equals(e2)).FirstOrDefault();
                 if (item is null)
-                    return Tuple.Create(Math.Abs(tick2.Usege - tick1.Usege) / 2, e2);
+                    return Tuple.Create(Math.Abs(tick2.Usege - tick1.Usege), e2);
                 if (e2.Count != item.Count)
                     return Tuple.Create(Math.Abs(tick2.Usege - tick1.Usege), e2);
             }

@@ -18,7 +18,7 @@ namespace Energy
                 new Tick("Lamp 3, Computer 3, Freese 4", 1000)
             });
 
-            for(int i = 0; i < 3; i++)
+            for(int i = 0; i < 5; i++)
                 Manager.Update(inputData);
             Console.ReadLine();
         }
