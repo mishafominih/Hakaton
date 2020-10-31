@@ -42,6 +42,17 @@ namespace Energy
                 f.Show();
                 Hide();
             };
+            pictureBox3.Click += (e, a) =>
+            {
+                Tarif f = new Tarif();
+                f.FormClosed += (ee, aa) =>
+                {
+                    this.Show();
+                };
+                f.Show();
+                Hide();
+            };
+
         }
 
         private void InitializeComponent()

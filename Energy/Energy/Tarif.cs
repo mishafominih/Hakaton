@@ -3,40 +3,34 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Imaging;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.IO;
-using System.Drawing.Imaging;
-using NUnit.Framework.Constraints;
 
-namespace Energy.Forms
+namespace Energy
 {
-    public partial class DataUsegeDevice : Form
+    public partial class Tarif : Form
     {
+        
         Label label = new Label();
         private List<Device> printDevice;
         private Dictionary<Type, Color> brush2;
-        private bool isFullTrafic = true;
-        private bool isDay;
         private bool isFirst = true;
         private Dictionary<Type, Label> PrintNameDevice;
 
-        public DataUsegeDevice()
+        public Tarif()
         {
-            isDay = DateTime.Now.Hour > 7 && DateTime.Now.Hour < 22;
             InitializeComponent();
             Initiatialize();
         }
 
         private void Initiatialize()
         {
+            Paint += (a, e) => Tarif_Paint(e);
             PrintNameDevice = new Dictionary<Type, Label>();
-            if (!isDay)
-                this.BackColor = Color.FromArgb(62, 71, 88);
             this.Text = "Мой Дом";
-            this.Size = new Size(1500, 750);
             printDevice = Manager.GetDevicesData().ToList();
             CreateBrush();
             this.Controls.Add(label);
@@ -48,7 +42,7 @@ namespace Energy.Forms
             var g = e.Graphics;
             var yPos = 500;
             var dy = 25;
-            var xPos = 600;
+            var xPos = 100;
             var dx = 200;
             foreach (var element in printDevice)
             {
@@ -69,7 +63,7 @@ namespace Energy.Forms
                 {
                     var v = GetTarif(new List<Device> { element }).ToString();
                     PrintNameDevice[element.TypeDevice].Text = element.TypeDevice.ToString() + " " +
-                        v.Substring(0, Math.Min(v.Length, 5)) + " кВт⋅ч";
+                        v.Substring(0, Math.Min(v.Length, 5)) + " руб";
                 }
                 yPos += dy;
                 if (yPos + 2 * dy >= this.Size.Height)
@@ -102,7 +96,7 @@ namespace Energy.Forms
 
             var all = GetTarif(printDevice);
             var print = Manager.GetDevicesData().ToList();
-            
+
             // Рисуем круговую диаграмму
             var startZ = 0.0f;
             var endZ = 0.0f;
@@ -115,9 +109,9 @@ namespace Energy.Forms
                 if (brush2.ContainsKey(e.TypeDevice))
                     graphics.FillPie(new SolidBrush(brush2[e.TypeDevice]), 0.0f, 0.0f, width, height, startZ, endZ - startZ);
             }
-            label.Location = new Point(698, 248);
+            label.Location = new Point(148, 248);
             label.Size = new Size(104, 104);
-            label.Text = all.ToString().Substring(0, Math.Min(all.ToString().Length, 5)) + " кВт⋅ч";
+            label.Text = all.ToString().Substring(0, Math.Min(all.ToString().Length, 5)) + " руб";
             label.TextAlign = ContentAlignment.MiddleCenter;
             label.Font = new Font("Arial", 22);
             return mybit;
@@ -125,65 +119,16 @@ namespace Energy.Forms
 
         private double GetTarif(List<Device> devices)
         {
-            var tarif = new EkonomikInfo(devices, DateTime.MinValue);
-            if (isFullTrafic)
-                return  tarif.StandartUsege;
-            if (isDay)
-                return tarif.DayUsage;
-            return tarif.NightUsage;
+            return new EkonomikInfo(devices, DateTime.MinValue).StandartTarif;
         }
 
-        private void DataUsegeDevice_Paint(object sender, PaintEventArgs e)
+        private void Tarif_Paint(PaintEventArgs e)
         {
             CreateNameDevice(e);
             Bitmap myBitmap = Draws(200, 200);
             Graphics g = e.Graphics;
-            g.DrawImage(myBitmap, 650, 200);
-            g.FillEllipse(new SolidBrush(this.BackColor), 675, 225, 150, 150);
-        }
-
-        private void DataUsegeDevice_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            var myButtom = (Button)sender;
-            if (isFullTrafic)
-            {  
-                this.BackColor = Color.FromArgb(255, 255, 254);
-                if (isDay)
-                    myButtom.Text = "Day";
-                else
-                    myButtom.Text = "Night";
-                isFullTrafic = false;
-            }
-            else
-            {
-                this.BackColor = Color.FromArgb(255, 255, 253);
-                myButtom.Text = "За все время";
-                isFullTrafic = true;
-            }
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            var myButtom = (Button)sender;
-
-            if (!isFullTrafic)
-                if (isDay)
-                {
-                    this.BackColor = Color.FromArgb(62, 71, 88);
-                    myButtom.Text = "Night";
-                    isDay = false;
-                }
-                else
-                {   
-                    this.BackColor = Color.White;
-                    myButtom.Text = "Day";
-                    isDay = true;
-                }
+            g.DrawImage(myBitmap, 100, 200);
+            g.FillEllipse(new SolidBrush(this.BackColor), 125, 225, 150, 150);
         }
     }
 }

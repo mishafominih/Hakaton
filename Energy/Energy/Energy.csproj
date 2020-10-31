@@ -64,12 +64,6 @@
     <Compile Include="DeviceInfo.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="DivaceInformation.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="DivaceInformation.designer.cs">
-      <DependentUpon>DivaceInformation.cs</DependentUpon>
-    </Compile>
     <Compile Include="EkonomikInfo.cs" />
     <Compile Include="InputData.cs" />
     <Compile Include="Manager.cs" />
@@ -87,6 +81,12 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="Statistic.cs" />
+    <Compile Include="Tarif.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Tarif.Designer.cs">
+      <DependentUpon>Tarif.cs</DependentUpon>
+    </Compile>
     <Compile Include="Tick.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -109,6 +109,9 @@
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tarif.resx">
+      <DependentUpon>Tarif.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
