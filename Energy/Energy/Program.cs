@@ -25,7 +25,7 @@ namespace Energy
             for(int i = 0; i < 10; i++)
                 Manager.Update(inputData);
 
-            var form = new Forms.DataUsegeDevice();
+            var form = new Menu();
             Application.Run(form);
 
             Console.ReadLine();
