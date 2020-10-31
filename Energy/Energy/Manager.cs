@@ -17,5 +17,7 @@ namespace Energy
             }
 
         }
+
+        public static List<Device> GetDevicesData() => Statistic.GetDevices();
     }
 }

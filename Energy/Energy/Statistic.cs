@@ -10,6 +10,8 @@ namespace Energy
     {
         static List<Device> devices = new List<Device>();
 
+        public static List<Device> GetDevices() => devices;
+
         public static void UpdateTick(Tick tick)
         {
             foreach(var d in tick.devices)
