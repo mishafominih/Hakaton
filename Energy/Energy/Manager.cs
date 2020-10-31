@@ -8,6 +8,14 @@ namespace Energy
 {
     public class Manager
     {
+        public static void Update(InputData inputData)
+        {
+            var data = inputData.GetValue();
+            if (!(data is null))
+            {
+                Statistic.UpdateTick(data);
+            }
 
+        }
     }
 }
