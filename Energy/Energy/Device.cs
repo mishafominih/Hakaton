@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,6 +22,7 @@ namespace Energy
         public int Count;
         public double SumUsege;
         public Type TypeDevice;
+        public Color color;
 
         
         List<Tuple<DateTime, double>> graf = new List<Tuple<DateTime, double>>();
@@ -57,18 +59,23 @@ namespace Energy
             {
                 case Type.Computer:
                     diapazon = new Diapazon(0, 0.001);
+                    color = Color.Yellow;
                     break;
                 case Type.Freese:
                     diapazon = new Diapazon(0.07, 0.1);
+                    color = Color.Green;
                     break;
                 case Type.Lamp:
                     diapazon = new Diapazon(0.001, 0.03);
+                    color = Color.Pink;
                     break;
                 case Type.Condition:
                     diapazon = new Diapazon(0.03, 0.07);
+                    color = Color.Red;
                     break;
                 case Type.DishWasher:
                     diapazon = new Diapazon(0.1, 0.2);
+                    color = Color.Blue;
                     break;
             }
         }

@@ -24,9 +24,23 @@ namespace Energy
             InitializeComponent();
             pictureBox1.Click += (e, a) =>
             {
-                new Forms.DataUsegeDevice().Show();
+                Forms.DataUsegeDevice f = new Forms.DataUsegeDevice();
+                f.FormClosed += (ee, aa) =>
+                {
+                    this.Show();
+                };
+                f.Show();
                 Hide();
-                
+            };
+            pictureBox2.Click += (e, a) =>
+            {
+                MyDevaice f = new MyDevaice();
+                f.FormClosed += (ee, aa) =>
+                {
+                    this.Show();
+                };
+                f.Show();
+                Hide();
             };
         }
 
