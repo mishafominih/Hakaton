@@ -13,9 +13,10 @@ namespace Energy
             InputData inputData = new InputData(new List<Tick>
             {
                 new Tick("Computer 2", 100),
-                new Tick("Computer 3", 150),
-                new Tick("Lamp 3, Computer 3", 200),
-                new Tick("Lamp 3, Computer 3, Freese 4", 1000)
+                new Tick("Computer 1", 50),
+                new Tick("Computer 1, Freese 1", 150),
+                new Tick("Computer 1", 50),
+                new Tick("Computer 1, Freese 1", 150)
             });
 
             for(int i = 0; i < 5; i++)
