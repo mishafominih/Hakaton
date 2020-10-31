@@ -23,13 +23,18 @@ namespace Energy
         public Type TypeDevice;
 
         
-        List<Tuple<DateTime, double>> Graf = new List<Tuple<DateTime, double>>();
+        List<Tuple<DateTime, double>> graf = new List<Tuple<DateTime, double>>();
 
 
 
         public void UpdateGraf()
         {
-            Graf.Add(Tuple.Create(DateTime.Now, SumUsege));
+            graf.Add(Tuple.Create(DateTime.Now, SumUsege));
+        }
+
+        public List<Tuple<DateTime, double>> GetGraf()
+        {
+            return graf;
         }
 
         public Device(Type type, int c)

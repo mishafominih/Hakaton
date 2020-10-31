@@ -1,4 +1,4 @@
-﻿using Energy.Forms;
+﻿
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,7 +25,7 @@ namespace Energy
             for(int i = 0; i < 10; i++)
                 Manager.Update(inputData);
 
-            var form = new DataUsegeDevice();
+            var form = new Forms.DataUsegeDevice();
             Application.Run(form);
 
             Console.ReadLine();
