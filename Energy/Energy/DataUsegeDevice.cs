@@ -40,7 +40,7 @@ namespace Energy.Forms
             var yPos = 500;
             var dy = 25;
             var xPos = 600;
-            var dx = 100;
+            var dx = 200;
             foreach (var element in printDevice)
             {
                 var text = new Label();
@@ -54,7 +54,7 @@ namespace Energy.Forms
                     yPos = 500;
                     xPos += dx;
                 }
-                text.Text = element.TypeDevice.ToString();
+                text.Text = element.TypeDevice.ToString() + " " + element.SumUsege.ToString() + " кВт⋅ч";
                 this.Controls.Add(text);
             }
 
