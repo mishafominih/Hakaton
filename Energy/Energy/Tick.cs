@@ -43,7 +43,8 @@ namespace Energy
                 if (e2.Count != item.Count)
                     return Tuple.Create(tick1.Usege - tick2.Usege, e2);
             }
-            return null;
+            Device device = null;
+            return Tuple.Create(tick1.Usege - tick2.Usege, device);
         }
     }
 }

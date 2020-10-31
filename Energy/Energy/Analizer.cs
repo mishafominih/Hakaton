@@ -17,9 +17,16 @@ namespace Energy
             }
             else
             {
-                var t = tick - prevTick;
-                if (!(t is null))
-                    t.Item2.SumUsege += t.Item1;
+                var t = tick - prevTick;// t = Tuple<double, Device>
+                if (t.Item2 is null)
+                {
+                    foreach(var d in tick.devices)
+                        if (d.diapazon.IsIn(t.Item1))
+                        {
+                            d.SumUsege += t.Item1;
+                        }
+                }
+                else t.Item2.SumUsege += t.Item1;
             }
             prevTick = new Tick(tick);
         }

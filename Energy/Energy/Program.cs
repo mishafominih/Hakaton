@@ -13,13 +13,12 @@ namespace Energy
             InputData inputData = new InputData(new List<Tick>
             {
                 new Tick("Computer 2", 100),
-                new Tick("Computer 1", 50),
-                new Tick("Computer 1, Freese 1", 150),
-                new Tick("Computer 1", 50),
-                new Tick("Computer 1, Freese 1", 150)
+                new Tick("Computer 2", 105),
+                new Tick("Lamp 3, Computer 2", 205),
+                new Tick("Lamp 3, Computer 2", 206)
             });
 
-            for(int i = 0; i < 5; i++)
+            for(int i = 0; i < 500; i++)
                 Manager.Update(inputData);
             Console.ReadLine();
         }
