@@ -19,8 +19,8 @@ namespace Energy
         {
             //обычный тариф
             var sum = 0.0;
-            foreach(var d in devices)
-                sum += GetUsege(d, start);
+            foreach (var d in devices)
+                sum += GetUsege(d, start) / d.GetGraf().Count;
             StandartTarif = sum * tarif;
             StandartUsege = sum;
             //день
