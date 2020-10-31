@@ -28,7 +28,7 @@ namespace Energy
             for (int i = 0; i < 50; i++)
             {
                 Manager.Update(inputData);
-                Thread.Sleep(100);
+                Thread.Sleep(200);
             }
 
             var form = new Menu();
