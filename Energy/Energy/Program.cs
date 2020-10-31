@@ -14,7 +14,8 @@ namespace Energy
             {
                 new Tick("Computer 2", 100),
                 new Tick("Computer 3", 150),
-                new Tick("Lamp 3, Computer 3", 200)
+                new Tick("Lamp 3, Computer 3", 200),
+                new Tick("Lamp 3, Computer 3, Freese 4", 1000)
             });
 
             for(int i = 0; i < 3; i++)

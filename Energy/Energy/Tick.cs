@@ -10,6 +10,18 @@ namespace Energy
     {
         public List<Device> devices;
         public double Usege;
+
+        public Tick(Tick tick)
+        {
+            Usege = tick.Usege;
+            var res = new List<Device>();
+            foreach(var d in tick.devices)
+            {
+                res.Add(new Device(d.TypeDevice, d.Count));
+            }
+            devices = res;
+        }
+
         public Tick(string str, double d)
         {
             devices = str.Split(new string[] { ", " }, StringSplitOptions.RemoveEmptyEntries)
@@ -27,10 +39,9 @@ namespace Energy
             {
                 var item = tick2.devices.Where(e1 => e1.Equals(e2)).FirstOrDefault();
                 if (item is null)
-                    return Tuple.Create(Math.Abs(tick2.Usege - tick1.Usege), e2);
+                    return Tuple.Create(Math.Abs(tick2.Usege - tick1.Usege) / 2, e2);
                 if (e2.Count != item.Count)
                     return Tuple.Create(Math.Abs(tick2.Usege - tick1.Usege), e2);
-
             }
             return null;
         }

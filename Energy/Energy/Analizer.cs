@@ -16,16 +16,14 @@ namespace Energy
                 if (prevTick is null)
                 {
                     d.SumUsege = tick.Usege;
-                    prevTick = tick;
                     break;
                 }
                 var t = tick - prevTick;
                 if (t is null)
                     break;
-                t.Item2.SumUsege = t.Item1;
+                t.Item2.SumUsege += t.Item1;
             }
-            prevTick.Usege = tick.Usege;
-            prevTick.devices = tick.devices.ToList();
+            prevTick = new Tick(tick);
         }
     }
 }
