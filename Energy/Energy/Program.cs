@@ -18,7 +18,7 @@ namespace Energy
                 new Tick("Computer 2", 105),
                 new Tick("Lamp 3, Computer 2", 205),
                 new Tick("Lamp 3, Computer 2", 206),
-                new Tick("Lamp 3, Computer 2, Freese 1", 306)
+                new Tick("Lamp 3, Computer 2, Freese 1", 506)
             });
 
 

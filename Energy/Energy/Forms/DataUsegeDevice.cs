@@ -16,32 +16,61 @@ namespace Energy.Forms
 {
     public partial class DataUsegeDevice : Form
     {
-        private Dictionary<Type, SolidBrush> brush2;
+        private List<Device> printDevice;
+        private Dictionary<Type, Color> brush2;
 
         public DataUsegeDevice()
         {
-            InitializeComponent();
+
             Initiatialize();
+            InitializeComponent();
         }
 
         private void Initiatialize()
         {
             this.Text = "Мой Дом";
             this.Size = new Size(1500, 750);
+            printDevice = Manager.GetDevicesData().ToList();
             CreateBrush();
+        }
+
+
+        private void CreateNameDevice(object sender, PaintEventArgs e)
+        {
+            var g = e.Graphics;
+            var yPos = 500;
+            var dy = 25;
+            var xPos = 600;
+            var dx = 100;
+            foreach(var element in printDevice)
+            {
+                var text = new Label();
+                text.Location = new Point(xPos, yPos);
+                g.FillRectangle(new SolidBrush(brush2[element.TypeDevice]), new Rectangle(xPos + dx, yPos, dx, dy));
+                text.Size = new Size(dx, dy);
+                text.Font = new Font("Arial", 12);
+                yPos += dy;
+                if (yPos + 2 * dy >= this.Size.Height)
+                {
+                    yPos = 500;
+                    xPos += dx;
+                }
+                text.Text = element.TypeDevice.ToString();
+                this.Controls.Add(text);
+            }
         }
 
         private void CreateBrush()
         {
-            brush2 = new Dictionary<Type, SolidBrush>();
-            brush2[Type.Computer] = new SolidBrush(Color.Yellow);
-            brush2[Type.Condition] = new SolidBrush(Color.Red);
-            brush2[Type.DishWasher] = new SolidBrush(Color.Blue);
-            brush2[Type.Freese] = new SolidBrush(Color.Green);
-            brush2[Type.Lamp] = new SolidBrush(Color.Pink);
+            brush2 = new Dictionary<Type, Color>();
+            brush2[Type.Computer] = Color.Yellow;
+            brush2[Type.Condition] = Color.Red;
+            brush2[Type.DishWasher] = Color.Blue;
+            brush2[Type.Freese] = Color.Green;
+            brush2[Type.Lamp] = Color.Pink;
         }
 
-        public Bitmap Draws(Color bgCol, int width, int height, List<Device> vals)
+        public Bitmap Draws(Color bgCol, int width, int height)
         {
             // Создаем новый образ и стираем фон
             Bitmap mybit = new Bitmap(width, height, PixelFormat.Format32bppArgb);
@@ -51,37 +80,32 @@ namespace Energy.Forms
             brush.Dispose();
 
             // Сумма для получения общего
-            var all = vals.Select(e => e.SumUsege).Sum();
-
+            var all = printDevice.Select(e => e.SumUsege).Sum();
+            var print = Manager.GetDevicesData().ToList();
             // Рисуем круговую диаграмму
             var startZ = 0.0f;
             var endZ = 0.0f;
             var current = 0.0;
-            foreach (var e in vals)
+            foreach (var e in print)
             {
                 current += e.SumUsege;
                 startZ = endZ;
                 endZ = (float)(current / all) * 360.0f;
-                var x = brush2[e.TypeDevice];
-                graphics.FillPie(x, 0.0f, 0.0f, width, height, startZ, endZ - startZ);
+                if (brush2.ContainsKey(e.TypeDevice))
+                    graphics.FillPie(new SolidBrush(brush2[e.TypeDevice]), 0.0f, 0.0f, width, height, startZ, endZ - startZ);
             }
-
-            // Очищаем ресурсы кисти
-            foreach (SolidBrush cleanBrush in brush2.Values)
-                cleanBrush.Dispose();
 
             return mybit;
         }
 
         private void DataUsegeDevice_Paint(object sender, PaintEventArgs e)
         {
+            CreateNameDevice(sender, e);
             var myColor = Color.FromArgb(255, 255, 255);
-            var vals = Manager.GetDevicesData().ToList();
-            Bitmap myBitmap = Draws(myColor, 300, 300, vals);
+            Bitmap myBitmap = Draws(myColor, 200, 200);
             Graphics g = e.Graphics;
-            
-            g.DrawImage(myBitmap, 5, 5);
-            g.FillEllipse(new SolidBrush(Color.White), 30, 30, 250, 250);
+            g.DrawImage(myBitmap, 650, 200);
+            g.FillEllipse(new SolidBrush(Color.White), 675, 225, 150, 150);
         }
 
         private void DataUsegeDevice_Load(object sender, EventArgs e)
