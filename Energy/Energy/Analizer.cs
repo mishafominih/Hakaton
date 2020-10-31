@@ -11,18 +11,15 @@ namespace Energy
         private static Tick prevTick;
         public static void Update(Tick tick)
         {
-            foreach (var d in tick.devices)
+            if (prevTick is null)
             {
-                if (prevTick is null)
-                {
-                    d.SumUsege = tick.Usege;
-                    break;
-                }
+                tick.devices.First().SumUsege = tick.Usege;
+            }
+            else
+            {
                 var t = tick - prevTick;
-                if (t is null)
-                    break;
-                t.Item2.SumUsege += t.Item1;
-                break;
+                if (!(t is null))
+                    t.Item2.SumUsege += t.Item1;
             }
             prevTick = new Tick(tick);
         }
